@@ -1,0 +1,3 @@
+[submodule "HttpClient.net"]
+	path = HttpClient.net
+	url = https://github.com/palburtus/HttpClient.net.git
