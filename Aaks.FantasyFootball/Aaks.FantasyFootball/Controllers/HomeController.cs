@@ -5,6 +5,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using System.IO;
+using System.Text;
+using System.Runtime.Serialization.Json;
 
 namespace Aaks.FantasyFootball.Controllers
 {
@@ -18,11 +21,11 @@ namespace Aaks.FantasyFootball.Controllers
 
         private List<Player> GetPlayers()
         {
-            string url = "https://api.fantasydata.net/api/nfl/fantasy/json/PlayerSeasonStats/2018";
-            var client = new HttpRestClient();
-            Dictionary<string, string> headers = new Dictionary<string, string>();
-            headers.Add("Ocp-Apim-Subscription-Key", "5ff5e827ec174421aa914dcef10a2302");
-            var response = client.Get<List<Player>>(url);
+            //string url = "https://api.fantasydata.net/api/nfl/fantasy/json/PlayerSeasonStats/2018";
+            //var client = new HttpRestClient();
+            //Dictionary<string, string> headers = new Dictionary<string, string>();
+            //headers.Add("Ocp-Apim-Subscription-Key", "5ff5e827ec174421aa914dcef10a2302");
+            /*var response = client.Get<List<Player>>(url);
 
             if(response.StatusCode == System.Net.HttpStatusCode.OK)
             {
@@ -31,7 +34,25 @@ namespace Aaks.FantasyFootball.Controllers
             else
             {
                 return null;
+            }*/
+
+            using (StreamReader r = new StreamReader(Server.MapPath(@"\Json\playerdata2018.json")))
+            {
+                string json = r.ReadToEnd();
+                var players = Deserialize<List<Player>>(json);
+
+                return players;
             }
+        }
+
+        private T Deserialize<T>(string json)
+        {
+            T obj = Activator.CreateInstance<T>();
+            MemoryStream ms = new MemoryStream(Encoding.UTF8.GetBytes(json));
+            DataContractJsonSerializer serializer = new DataContractJsonSerializer(obj.GetType());
+            obj = (T)serializer.ReadObject(ms);
+            ms.Close();
+            return obj;
         }
 
         public ActionResult About()
