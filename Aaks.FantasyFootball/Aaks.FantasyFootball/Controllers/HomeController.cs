@@ -8,6 +8,7 @@ using System.Web.Mvc;
 using System.IO;
 using System.Text;
 using System.Runtime.Serialization.Json;
+using HtmlAgilityPack;
 
 namespace Aaks.FantasyFootball.Controllers
 {
@@ -41,8 +42,23 @@ namespace Aaks.FantasyFootball.Controllers
                 string json = r.ReadToEnd();
                 var players = Deserialize<List<Player>>(json);
 
-                return players;
+                return Get2018DraftPrice(players);
             }
+        }
+
+        private List<Player> Get2018DraftPrice(List<Player> players)
+        {
+            var html = @"http://fantasy.espn.com/football/league/draftrecap?seasonId=2018&leagueId=113756";
+
+            HtmlWeb web = new HtmlWeb();
+
+            var htmlDoc = web.Load(html);
+
+            var node = htmlDoc.GetElementbyId("espn-analytics");
+            var nodes = node.SelectNodes("div/div[3]/div/div[2]/div/div[2]/div");
+            
+
+            return players;
         }
 
         private T Deserialize<T>(string json)

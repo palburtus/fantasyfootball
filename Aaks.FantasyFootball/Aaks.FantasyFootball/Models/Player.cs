@@ -7,6 +7,7 @@ namespace Aaks.FantasyFootball.Models
 {
     public class Player
     {
+        public int? DraftPrice { get; set; }
         public int? PlayerID { get; set; }
         public int? SeasonType { get; set; }
         public int? Season { get; set; }

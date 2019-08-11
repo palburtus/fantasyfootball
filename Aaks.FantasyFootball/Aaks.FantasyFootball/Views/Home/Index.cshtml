@@ -2,7 +2,22 @@
     ViewBag.Title = "Home Page";
 }
 
-@foreach (var player in ViewBag.Players)
-{
-    <p>@player.Name</p>
-}
+    <table class="table">
+
+        <tr>
+            <th>Name</th>
+            <th>Position</th>
+            <th>Fantasy Poiints</th>
+        </tr>
+
+        @foreach (var player in ViewBag.Players)
+        {
+            <tr>
+                <td>@player.Name</td>
+                <td>@player.Position</td>
+                <td>@player.FantasyPoints</td>
+            </tr>
+
+        }
+
+    </table>
