@@ -8,6 +8,7 @@
             <th>Name</th>
             <th>Position</th>
             <th>Fantasy Poiints</th>
+            <th>2018 Auction Value</th>
         </tr>
 
         @foreach (var player in ViewBag.Players)
@@ -16,6 +17,7 @@
                 <td>@player.Name</td>
                 <td>@player.Position</td>
                 <td>@player.FantasyPoints</td>
+                <td>@player.LastYearDraftValue</td>
             </tr>
 
         }
