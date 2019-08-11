@@ -43,7 +43,9 @@ namespace Aaks.FantasyFootball.Controllers
                 string json = r.ReadToEnd();
                 var players = Deserialize<List<Player>>(json);
 
-                return Get2018DraftPrice(players);
+                var sorted = Get2018DraftPrice(players).OrderByDescending(p => p.FantasyPoints);
+
+                return sorted.ToList();
             }
         }
 
