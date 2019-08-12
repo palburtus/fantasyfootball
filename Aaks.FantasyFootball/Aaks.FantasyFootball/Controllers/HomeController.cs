@@ -15,6 +15,43 @@ namespace Aaks.FantasyFootball.Controllers
 {
     public class HomeController : Controller
     {
+        private List<string> WrFriendlyTeams = new List<string>()
+        {
+            "ARI",
+            "ATL"
+        };
+
+        private List<string> WrUnfriendlyTeams = new List<string>()
+        {
+
+        };
+
+        private List<string> RbFriendlyTeams = new List<string>()
+        {
+            "CIN"
+        };
+
+        private List<string> RbUnFriendlyTeams = new List<string>()
+        {
+            "ATL",
+            "DEN"
+        };
+
+        private List<string> PlayersToTarget = new List<string>()
+        {
+            "Christian Kirk",
+            "Calvin Ridley",
+            "Dak Prescott",
+            "Michael Gallup"
+        };
+
+        private List<string> PlayersToAvoid = new List<string>()
+        {
+            "Phillip Lindsay",
+            "Royce Freeman",
+            "Devontae Booker"
+        };
+
         private List<string> ThisYearsKeepers = new List<string>()
         {
             "Alvin Kamara", //Collin
@@ -79,7 +116,7 @@ namespace Aaks.FantasyFootball.Controllers
         {
             var players = GetPlayers();
             ViewBag.Players = players;
-            ViewBag.WideRecievers = players.Where(p => p.Position.ToLower() == "wr");
+            ViewBag.WideReceivers = players.Where(p => p.Position.ToLower() == "wr");
             ViewBag.RunningBacks = players.Where(p => p.Position.ToLower() == "rb");
             ViewBag.QuarterBacks = players.Where(p => p.Position.ToLower() == "qb");
             ViewBag.TightEnds = players.Where(p => p.Position.ToLower() == "te");

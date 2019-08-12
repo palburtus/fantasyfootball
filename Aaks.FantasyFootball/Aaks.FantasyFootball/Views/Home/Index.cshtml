@@ -29,7 +29,7 @@
                     <th>Position</th>
                     <th>Fantasy Poiints</th>
                     <th>2018 Auction Value</th>
-                    <th>Games Played</th>
+          
                 </tr>
 
                 @foreach (var player in ViewBag.Players)
@@ -49,7 +49,7 @@
                                 <td>@player.LastYearDraftValue</td>
                             }
 
-                            <td>@player.Played</td>
+          
                         </tr>
                     }
                     else
@@ -67,7 +67,7 @@
                                 <td>@player.LastYearDraftValue</td>
                             }
 
-                            <td>@player.Played</td>
+          
                         </tr>
                         
                      }
@@ -85,18 +85,50 @@
                     <th>Position</th>
                     <th>Fantasy Poiints</th>
                     <th>2018 Auction Value</th>
-                    <th>Games Played</th>
+          
                 </tr>
 
-                @foreach (var player in ViewBag.WideRecievers)
+                @foreach (var player in ViewBag.WideReceivers)
                 {
-                    <tr>
-                        <td>@player.Name</td>
-                        <td>@player.Position</td>
-                        <td>@player.FantasyPoints</td>
-                        <td>@player.LastYearDraftValue</td>
-                        <td>@player.Played</td>
-                    </tr>
+                    if (player.IsKeeper)
+                    {
+                        <tr class="table-dark">
+                            <td>@player.Name</td>
+                            <td>@player.Position</td>
+                            <td>@player.FantasyPoints</td>
+                            @if (player.IsLastYearKeeper)
+                            {
+                                <td>@player.LastYearDraftValue (K)</td>
+                            }
+                            else
+                            {
+                                <td>@player.LastYearDraftValue</td>
+                            }
+
+          
+                        </tr>
+                    }
+                    else
+                    {
+                        <tr>
+                            <td>@player.Name</td>
+                            <td>@player.Position</td>
+                            <td>@player.FantasyPoints</td>
+                            @if (player.IsLastYearKeeper)
+                            {
+                                <td>@player.LastYearDraftValue (K)</td>
+                            }
+                            else
+                            {
+                                <td>@player.LastYearDraftValue</td>
+                            }
+
+          
+                        </tr>
+
+                    }
+
+
                 }
 
             </table>
@@ -110,19 +142,50 @@
                     <th>Position</th>
                     <th>Fantasy Poiints</th>
                     <th>2018 Auction Value</th>
-                    <th>Games Played</th>
+          
                 </tr>
 
                 @foreach (var player in ViewBag.RunningBacks)
                 {
-                    <tr>
-                        <td>@player.Name</td>
-                        <td>@player.Position</td>
-                        <td>@player.FantasyPoints</td>
-                        <td>@player.LastYearDraftValue</td>
-                        <td>@player.Played</td>
-                    </tr>
+                    if (player.IsKeeper)
+                    {
+                        <tr class="table-dark">
+                            <td>@player.Name</td>
+                            <td>@player.Position</td>
+                            <td>@player.FantasyPoints</td>
+                            @if (player.IsLastYearKeeper)
+                            {
+                                <td>@player.LastYearDraftValue (K)</td>
+                            }
+                            else
+                            {
+                                <td>@player.LastYearDraftValue</td>
+                            }
+
+                        </tr>
+                    }
+                    else
+                    {
+                        <tr>
+                            <td>@player.Name</td>
+                            <td>@player.Position</td>
+                            <td>@player.FantasyPoints</td>
+                            @if (player.IsLastYearKeeper)
+                            {
+                                <td>@player.LastYearDraftValue (K)</td>
+                            }
+                            else
+                            {
+                                <td>@player.LastYearDraftValue</td>
+                            }
+
+                        </tr>
+
+                    }
+
+
                 }
+
 
             </table>
         </div>
@@ -136,19 +199,52 @@
                     <th>Position</th>
                     <th>Fantasy Poiints</th>
                     <th>2018 Auction Value</th>
-                    <th>Games Played</th>
+
                 </tr>
 
                 @foreach (var player in ViewBag.QuarterBacks)
                 {
-                    <tr>
-                        <td>@player.Name</td>
-                        <td>@player.Position</td>
-                        <td>@player.FantasyPoints</td>
-                        <td>@player.LastYearDraftValue</td>
-                        <td>@player.Played</td>
-                    </tr>
+                    if (player.IsKeeper)
+                    {
+                        <tr class="table-dark">
+                            <td>@player.Name</td>
+                            <td>@player.Position</td>
+                            <td>@player.FantasyPoints</td>
+                            @if (player.IsLastYearKeeper)
+                            {
+                                <td>@player.LastYearDraftValue (K)</td>
+                            }
+                            else
+                            {
+                                <td>@player.LastYearDraftValue</td>
+                            }
+
+
+                        </tr>
+                    }
+                    else
+                    {
+                        <tr>
+                            <td>@player.Name</td>
+                            <td>@player.Position</td>
+                            <td>@player.FantasyPoints</td>
+                            @if (player.IsLastYearKeeper)
+                            {
+                                <td>@player.LastYearDraftValue (K)</td>
+                            }
+                            else
+                            {
+                                <td>@player.LastYearDraftValue</td>
+                            }
+
+
+                        </tr>
+
+                    }
+
+
                 }
+
 
             </table>
             
@@ -161,19 +257,51 @@
                     <th>Position</th>
                     <th>Fantasy Poiints</th>
                     <th>2018 Auction Value</th>
-                    <th>Games Played</th>
+
                 </tr>
 
                 @foreach (var player in ViewBag.TightEnds)
                 {
-                    <tr>
-                        <td>@player.Name</td>
-                        <td>@player.Position</td>
-                        <td>@player.FantasyPoints</td>
-                        <td>@player.LastYearDraftValue</td>
-                        <td>@player.Played</td>
-                    </tr>
+                    if (player.IsKeeper)
+                    {
+                        <tr class="table-dark">
+                            <td>@player.Name</td>
+                            <td>@player.Position</td>
+                            <td>@player.FantasyPoints</td>
+                            @if (player.IsLastYearKeeper)
+                            {
+                                <td>@player.LastYearDraftValue (K)</td>
+                            }
+                            else
+                            {
+                                <td>@player.LastYearDraftValue</td>
+                            }
+
+
+                        </tr>
+                    }
+                    else
+                    {
+                        <tr>
+                            <td>@player.Name</td>
+                            <td>@player.Position</td>
+                            <td>@player.FantasyPoints</td>
+                            @if (player.IsLastYearKeeper)
+                            {
+                                <td>@player.LastYearDraftValue (K)</td>
+                            }
+                            else
+                            {
+                                <td>@player.LastYearDraftValue</td>
+                            }
+
+                        </tr>
+
+                    }
+
+
                 }
+
 
             </table>
         </div>
