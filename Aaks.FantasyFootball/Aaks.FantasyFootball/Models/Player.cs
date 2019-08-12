@@ -145,5 +145,8 @@ namespace Aaks.FantasyFootball.Models
         public double? AverageDraftPosition2QB { get; set; }
         public List<object> ScoringDetails { get; set; }
         public int LastYearDraftValue { get; set; }
+        public bool IsLastYearKeeper { get; set; }
+        public bool IsKeeper { get; set; }
+
     }
 }

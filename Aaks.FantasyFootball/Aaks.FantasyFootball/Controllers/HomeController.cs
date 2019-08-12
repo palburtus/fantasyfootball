@@ -15,52 +15,83 @@ namespace Aaks.FantasyFootball.Controllers
 {
     public class HomeController : Controller
     {
+        private List<string> LastYearsKeepers = new List<string>
+        {
+            "David Johnson",
+            "Alvin Kamara",
+            "Jordan Howard",
+            "Rob Gronkowski",
+            "Larry Fitzgerald",
+            "Kirk Cousins",
+            "Odell Beckham",
+            "Jimmy Graham",
+            "Jimmy Garoppolo",
+            "Todd Gurley",
+            "Melvin Gordon",
+            "Jerick McKinnon",
+            "Tyreek Hill",
+            "Greg Olsen",
+            "Antonio Brown",
+            "Devonta Freeman",
+            "Marquise Goodwin",
+            "Michael Thomas",
+            "Zach Ertz",
+            "Kenyan Drake",
+            "Devante Adams",
+            "John Gordon",
+            "Brandin Cooks",
+            "DeAndre Hopkins",
+            "Dalvin Cook",
+            "Leonard Fournette",
+            "Le'Veon Bell",
+            "Kareem Hunt",
+            "Derrick Henery",
+            "Dion Lewis",
+            "Eric Decker",
+
+        };
+
         public ActionResult Index()
         {
-            ViewBag.Players = GetPlayers();
+            var players = GetPlayers();
+            ViewBag.Players = players;
+            ViewBag.WideRecievers = players.Where(p => p.Position.ToLower() == "wr");
+            ViewBag.RunningBacks = players.Where(p => p.Position.ToLower() == "rb");
+            ViewBag.QuarterBacks = players.Where(p => p.Position.ToLower() == "qb");
+            ViewBag.TightEnds = players.Where(p => p.Position.ToLower() == "te");
             return View();
         }
 
         private List<Player> GetPlayers()
         {
-            //string url = "https://api.fantasydata.net/api/nfl/fantasy/json/PlayerSeasonStats/2018";
-            //var client = new HttpRestClient();
-            //Dictionary<string, string> headers = new Dictionary<string, string>();
-            //headers.Add("Ocp-Apim-Subscription-Key", "5ff5e827ec174421aa914dcef10a2302");
-            /*var response = client.Get<List<Player>>(url);
-
-            if(response.StatusCode == System.Net.HttpStatusCode.OK)
-            {
-                return response.Body;
-            }
-            else
-            {
-                return null;
-            }*/
-
             using (StreamReader r = new StreamReader(Server.MapPath(@"\Json\playerdata2018.json")))
             {
                 string json = r.ReadToEnd();
                 var players = Deserialize<List<Player>>(json);
 
-                var sorted = Get2018DraftPrice(players).OrderByDescending(p => p.FantasyPoints);
+                var sorted = Get2018DraftPrice(players).OrderByDescending(p => p.FantasyPoints).ToList();
 
-                return sorted.ToList();
+                sorted = SetIs2018Keeper(sorted);
+
+                return sorted;
             }
+        }
+
+        private List<Player> SetIs2018Keeper(List<Player> players)
+        {
+            foreach(var p in players)
+            {
+                if(LastYearsKeepers.Contains(RemoveNonLetters(p.Name)))
+                {
+                    p.IsLastYearKeeper = true;
+                }
+            }
+
+            return players;
         }
 
         private List<Player> Get2018DraftPrice(List<Player> players)
         {
-            //var html = @"http://fantasy.espn.com/football/league/draftrecap?seasonId=2018&leagueId=113756";
-
-            //HtmlWeb web = new HtmlWeb();
-
-
-
-            //var body = web.Load(html).DocumentNode.SelectNodes("html/body//*[@id='__next-wrapper']//*[@id='__next']//*[@id='espn-analytics']"); 
-
-            //GetElementbyId("espn-analytics");
-
             using (StreamReader r = new StreamReader(Server.MapPath(@"\Json\2018DraftResults.html")))
             {
                 string html = r.ReadToEnd();
@@ -116,10 +147,6 @@ namespace Aaks.FantasyFootball.Controllers
 
                 values.Add(value);
             }
-
-            //NO.PlayerBID AMOUNT12David Johnson Ari, RB$1623Alvin Kamara NO, RB$631Jordan Howard Chi, RB$1637A.J. Green Cin, WR$4242Travis Kelce KC, TE$2444Keenan Allen LAC, WR$4792Corey Davis Ten, WR$14104Kerryon Johnson Det, RB$22115Philip Rivers LAC, QB$4127Anthony Miller Chi, WR$1162Christian Kirk Ari, WR$1179Tyler Lockett Sea, WR$1190Eli Manning NYG, QB$1194Dede Westbrook Jax, WR$1198Terrance Williams Dal, WR$1200Matt Prater Det, K$1202Bears D/ST Chi, D/ST$1
-
-            //
 
             return values;
         }
