@@ -15,6 +15,30 @@ namespace Aaks.FantasyFootball.Controllers
 {
     public class HomeController : Controller
     {
+        private List<string> ThisYearsKeepers = new List<string>()
+        {
+            "Alvin Kamara", //Collin
+            "David Johnson",
+            "Travis Kelce",
+            "Todd Gurley", //Pat
+            "Melvin Gordon",
+            "Joe Mixon",
+            "Davante Adams", //Shane
+            "Christian Mccaffery",
+            "Tyreek Hill", //Jodee
+            "Aaron Jones",
+            "George Kittle",
+            "Dalvin Cook", //Joe
+            "DeAndre Hopkins",
+            "Latavius Murry",
+            "TY Hilton", //Wik
+            "Devonta Freeman",
+            "Dalvin Cook",
+            "Brandin Cooks", //Gary
+            "Damien Williams",
+
+        };
+
         private List<string> LastYearsKeepers = new List<string>
         {
             "David Johnson",
@@ -72,6 +96,7 @@ namespace Aaks.FantasyFootball.Controllers
                 var sorted = Get2018DraftPrice(players).OrderByDescending(p => p.FantasyPoints).ToList();
 
                 sorted = SetIs2018Keeper(sorted);
+                sorted = SetIsKeeper(sorted);
 
                 return sorted;
             }
@@ -84,6 +109,19 @@ namespace Aaks.FantasyFootball.Controllers
                 if(LastYearsKeepers.Contains(RemoveNonLetters(p.Name)))
                 {
                     p.IsLastYearKeeper = true;
+                }
+            }
+
+            return players;
+        }
+
+        private List<Player> SetIsKeeper(List<Player> players)
+        {
+            foreach (var p in players)
+            {
+                if (ThisYearsKeepers.Contains(RemoveNonLetters(p.Name)))
+                {
+                    p.IsKeeper = true;
                 }
             }
 

@@ -34,24 +34,48 @@
 
                 @foreach (var player in ViewBag.Players)
                 {
-            <tr>
-                <td>@player.Name</td>
-                <td>@player.Position</td>
-                <td>@player.FantasyPoints</td>
-                @if(player.IsLastYearKeeper)
-                {
-                    <td>@player.LastYearDraftValue (K)</td>
-                }
-                else
-                {
-                    <td>@player.LastYearDraftValue</td>
-                }
-                
-                <td>@player.Played</td>
-            </tr>
-                }
+                    if (player.IsKeeper)
+                    {
+                        <tr class="table-dark">
+                            <td>@player.Name</td>
+                            <td>@player.Position</td>
+                            <td>@player.FantasyPoints</td>
+                            @if (player.IsLastYearKeeper)
+                            {
+                                <td>@player.LastYearDraftValue (K)</td>
+                            }
+                            else
+                            {
+                                <td>@player.LastYearDraftValue</td>
+                            }
 
-            </table>
+                            <td>@player.Played</td>
+                        </tr>
+                    }
+                    else
+                    {
+                        <tr>
+                            <td>@player.Name</td>
+                            <td>@player.Position</td>
+                            <td>@player.FantasyPoints</td>
+                            @if (player.IsLastYearKeeper)
+                            {
+                                <td>@player.LastYearDraftValue (K)</td>
+                            }
+                            else
+                            {
+                                <td>@player.LastYearDraftValue</td>
+                            }
+
+                            <td>@player.Played</td>
+                        </tr>
+                        
+                     }
+
+
+                            }
+
+                    </table>
         </div>
         <div class="tab-pane fade" id="wr" role="tabpanel" aria-labelledby="wr-tab">
             <table class="table">
