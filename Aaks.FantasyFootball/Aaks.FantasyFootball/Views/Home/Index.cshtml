@@ -26,10 +26,11 @@
 
                 <tr>
                     <th>Name</th>
+                    <th>Team</th>
                     <th>Position</th>
                     <th>Fantasy Poiints</th>
                     <th>2018 Auction Value</th>
-          
+
                 </tr>
 
                 @foreach (var player in ViewBag.Players)
@@ -38,6 +39,7 @@
                     {
                         <tr class="table-dark">
                             <td>@player.Name</td>
+                            <td>@player.Team</td>
                             <td>@player.Position</td>
                             <td>@player.FantasyPoints</td>
                             @if (player.IsLastYearKeeper)
@@ -49,13 +51,14 @@
                                 <td>@player.LastYearDraftValue</td>
                             }
 
-          
+
                         </tr>
                     }
                     else
                     {
                         <tr>
                             <td>@player.Name</td>
+                            <td>@player.Team</td>
                             <td>@player.Position</td>
                             <td>@player.FantasyPoints</td>
                             @if (player.IsLastYearKeeper)
@@ -67,25 +70,26 @@
                                 <td>@player.LastYearDraftValue</td>
                             }
 
-          
+
                         </tr>
-                        
-                     }
 
+                    }
 
-                            }
+                }
 
-                    </table>
+            </table>
         </div>
+
         <div class="tab-pane fade" id="wr" role="tabpanel" aria-labelledby="wr-tab">
             <table class="table">
 
                 <tr>
                     <th>Name</th>
+                    <th>Team</th>
                     <th>Position</th>
                     <th>Fantasy Poiints</th>
                     <th>2018 Auction Value</th>
-          
+
                 </tr>
 
                 @foreach (var player in ViewBag.WideReceivers)
@@ -94,6 +98,7 @@
                     {
                         <tr class="table-dark">
                             <td>@player.Name</td>
+                            <td>@player.Team</td>
                             <td>@player.Position</td>
                             <td>@player.FantasyPoints</td>
                             @if (player.IsLastYearKeeper)
@@ -105,13 +110,14 @@
                                 <td>@player.LastYearDraftValue</td>
                             }
 
-          
+
                         </tr>
                     }
                     else
                     {
                         <tr>
                             <td>@player.Name</td>
+                            <td>@player.Team</td>
                             <td>@player.Position</td>
                             <td>@player.FantasyPoints</td>
                             @if (player.IsLastYearKeeper)
@@ -123,12 +129,10 @@
                                 <td>@player.LastYearDraftValue</td>
                             }
 
-          
+
                         </tr>
 
                     }
-
-
                 }
 
             </table>
@@ -139,10 +143,11 @@
 
                 <tr>
                     <th>Name</th>
+                    <th>Team</th>
                     <th>Position</th>
                     <th>Fantasy Poiints</th>
                     <th>2018 Auction Value</th>
-          
+
                 </tr>
 
                 @foreach (var player in ViewBag.RunningBacks)
@@ -151,6 +156,7 @@
                     {
                         <tr class="table-dark">
                             <td>@player.Name</td>
+                            <td>@player.Team</td>
                             <td>@player.Position</td>
                             <td>@player.FantasyPoints</td>
                             @if (player.IsLastYearKeeper)
@@ -161,6 +167,7 @@
                             {
                                 <td>@player.LastYearDraftValue</td>
                             }
+
 
                         </tr>
                     }
@@ -168,6 +175,7 @@
                     {
                         <tr>
                             <td>@player.Name</td>
+                            <td>@player.Team</td>
                             <td>@player.Position</td>
                             <td>@player.FantasyPoints</td>
                             @if (player.IsLastYearKeeper)
@@ -179,10 +187,10 @@
                                 <td>@player.LastYearDraftValue</td>
                             }
 
+
                         </tr>
 
                     }
-
 
                 }
 
@@ -196,6 +204,7 @@
 
                 <tr>
                     <th>Name</th>
+                    <th>Team</th>
                     <th>Position</th>
                     <th>Fantasy Poiints</th>
                     <th>2018 Auction Value</th>
@@ -208,6 +217,7 @@
                     {
                         <tr class="table-dark">
                             <td>@player.Name</td>
+                            <td>@player.Team</td>
                             <td>@player.Position</td>
                             <td>@player.FantasyPoints</td>
                             @if (player.IsLastYearKeeper)
@@ -226,6 +236,7 @@
                     {
                         <tr>
                             <td>@player.Name</td>
+                            <td>@player.Team</td>
                             <td>@player.Position</td>
                             <td>@player.FantasyPoints</td>
                             @if (player.IsLastYearKeeper)
@@ -241,8 +252,6 @@
                         </tr>
 
                     }
-
-
                 }
 
 
@@ -295,9 +304,12 @@
                                 <td>@player.LastYearDraftValue</td>
                             }
 
+
                         </tr>
 
                     }
+
+
 
 
                 }

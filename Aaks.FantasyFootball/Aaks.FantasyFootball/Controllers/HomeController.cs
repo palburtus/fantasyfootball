@@ -18,7 +18,11 @@ namespace Aaks.FantasyFootball.Controllers
         private List<string> WrFriendlyTeams = new List<string>()
         {
             "ARI",
-            "ATL"
+            "ATL",
+            "KC",
+            "CHI",
+            "TB",
+            "CIN"
         };
 
         private List<string> WrUnfriendlyTeams = new List<string>()
@@ -37,19 +41,70 @@ namespace Aaks.FantasyFootball.Controllers
             "DEN"
         };
 
+        private List<string> RookieRankings = new List<string>()
+        {
+            "N'Keal Harry",
+            "Miles Sanders"
+        };
+
+        private List<string> Sleepers = new List<string>()
+        {
+            "James Washington",
+            "N'Keal Harry",
+            "Miles Sanders",
+            "Tarik Cohen",
+            "Austin Ekeler", //Handcuff for Melvin Gordon 
+        };
+
         private List<string> PlayersToTarget = new List<string>()
         {
+            "Austin Ekeler", //Handcuff for Melvin Gordon 
+            "A.J. Green",
+            "Tyler Boyd", //Was hit or miss when AJ Green was healthy, was good when not, upside 
+            "Stephon Diggs",
             "Christian Kirk",
             "Calvin Ridley",
+            "Mike Williams",
             "Dak Prescott",
-            "Michael Gallup"
+            "Michael Gallup",
+            "Amari Cooper",
+            "Allen Robison",
+            "Cooper Kupp",
+            "Robert Woods",
+            "Will Fuller",
+            "Jarvis Landry",
+            "Chris Goodwin",
+            "D.J. Moore",
+            "Christian Kirk",
+            "Larry Fitzgerald",
+            "Tyler Lockett", //Okay for the rigth price, TD regress to mean 
+            "N'Keal Harry", //ROOKIE 
+            "Jordan Howard", //especially if you get rookie miles sanders
+            "Miles Sanders"
+
+
         };
 
         private List<string> PlayersToAvoid = new List<string>()
         {
             "Phillip Lindsay",
             "Royce Freeman",
-            "Devontae Booker"
+            "Devontae Booker",
+            "Antonio Brown",
+            "Keenan Allen",
+            "Adam Thielen", //Price too high compared to diggs, more consistent on a weekly basis however
+            "Alshon Jeffery", //Has other players that are lest risky in same price range
+            "Sammy Watkins",
+            "Kenny Golladay", //Too expensive
+            "Dante Pettis",
+            "Corey Davis",
+            "Derrius Guice", //too expensive 
+            "Devonta Freeman",
+            "Lamar Miller",
+            "Latavius Murray",
+            "Rashaad Penny",
+
+
         };
 
         private List<string> ThisYearsKeepers = new List<string>()
@@ -73,7 +128,10 @@ namespace Aaks.FantasyFootball.Controllers
             "Dalvin Cook",
             "Brandin Cooks", //Gary
             "Damien Williams",
-
+            "Michael Thomas", // Serge
+            "Mark Ingram",
+            "Julian Edelman",
+            "Julio Jones" //Tom
         };
 
         private List<string> LastYearsKeepers = new List<string>
