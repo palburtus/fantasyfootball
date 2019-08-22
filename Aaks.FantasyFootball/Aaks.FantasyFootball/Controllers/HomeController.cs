@@ -56,54 +56,52 @@ namespace Aaks.FantasyFootball.Controllers
             "Austin Ekeler", //Handcuff for Melvin Gordon 
         };
 
-        private List<string> PlayersToTarget = new List<string>()
+        private Dictionary<string, string> PlayersToTarget = new Dictionary<string, string>
         {
-            "Austin Ekeler", //Handcuff for Melvin Gordon 
-            "A.J. Green",
-            "Tyler Boyd", //Was hit or miss when AJ Green was healthy, was good when not, upside 
-            "Stephon Diggs",
-            "Christian Kirk",
-            "Calvin Ridley",
-            "Mike Williams",
-            "Dak Prescott",
-            "Michael Gallup",
-            "Amari Cooper",
-            "Allen Robison",
-            "Cooper Kupp",
-            "Robert Woods",
-            "Will Fuller",
-            "Jarvis Landry",
-            "Chris Goodwin",
-            "D.J. Moore",
-            "Christian Kirk",
-            "Larry Fitzgerald",
-            "Tyler Lockett", //Okay for the rigth price, TD regress to mean 
-            "N'Keal Harry", //ROOKIE 
-            "Jordan Howard", //especially if you get rookie miles sanders
-            "Miles Sanders"
+            { "Austin Ekeler", "Handcuff for Melvin Gordon" },
+            { "A.J. Green", "" },
+            { "Tyler Boyd", "Was hit or miss when AJ Green was healthy, was good when not, upside" },
+            { "Stephon Diggs", "" },
+            { "Christian Kirk", "Put him in this list twice!?" },
+            { "Calvin Ridley", "" },
+            { "Mike Williams", "" },
+            { "Dak Prescott", "" },
+            { "Michael Gallup", "" },
+            { "Amari Cooper", "" },
+            { "Allen Robison", "" },
+            { "Cooper Kupp", "" },
+            { "Robert Woods", "" },
+            { "Will Fuller", "" },
+            { "Jarvis Landry", "" },
+            { "Chris Goodwin", "" },
+            { "D.J. Moore", "" },
+            { "Larry Fitzgerald", "" },
+            { "Tyler Lockett", "Okay for the rigth price, TD regress to mean" },
+            { "N'Keal Harry", "ROOKIE - lots of upside !!!" },
+            { "Jordan Howard", "especially if you get rookie miles sanders" },
+            { "Miles Sanders", "" },
 
 
         };
 
-        private List<string> PlayersToAvoid = new List<string>()
+        private Dictionary<string, string> PlayersToAvoid = new Dictionary<string, string>
         {
-            "Phillip Lindsay",
-            "Royce Freeman",
-            "Devontae Booker",
-            "Antonio Brown",
-            "Keenan Allen",
-            "Adam Thielen", //Price too high compared to diggs, more consistent on a weekly basis however
-            "Alshon Jeffery", //Has other players that are lest risky in same price range
-            "Sammy Watkins",
-            "Kenny Golladay", //Too expensive
-            "Dante Pettis",
-            "Corey Davis",
-            "Derrius Guice", //too expensive 
-            "Devonta Freeman",
-            "Lamar Miller",
-            "Latavius Murray",
-            "Rashaad Penny",
-
+            { "Phillip Lindsay", "" },
+            { "Royce Freeman", ""},
+            { "Devontae Booker", "" },
+            { "Antonio Brown", ""},
+            { "Keenan Allen", "" },
+            { "Adam Thielen", "Price too high compared to diggs, more consistent on a weekly basis however" },
+            { "Alshon Jeffery", "Has other players that are lest risky in same price range" },
+            { "Sammy Watkins", "" },
+            { "Kenny Golladay", "Too expensive" },
+            { "Dante Pettis", "" },
+            { "Corey Davis", "" },
+            { "Derrius Guice", "too expensive" },
+            { "Devonta Freeman", "" },
+            { "Lamar Miller", "" },
+            { "Latavius Murray", "" },
+            { "Rashaad Penny", "" }
 
         };
 
@@ -213,15 +211,24 @@ namespace Aaks.FantasyFootball.Controllers
                     p.IsLastYearKeeper = true;
                 }
 
-                if(PlayersToTarget.Contains(RemoveNonLetters(p.Name)))
+                foreach(var key in PlayersToTarget.Keys)
                 {
-                    p.IsTarget = true;
+                    if (p.Name.Contains(key))
+                    {
+                        p.IsTarget = true;
+                        p.Note = PlayersToTarget[key];
+                    }
                 }
 
-                if(PlayersToAvoid.Contains(RemoveNonLetters(p.Name)))
+                foreach (var key in PlayersToAvoid.Keys)
                 {
-                    p.IsAvoid = true;
+                    if (p.Name.Contains(key))
+                    {
+                        p.IsAvoid = false;
+                        p.Note = PlayersToAvoid[key];
+                    }
                 }
+
             }
 
             return players;
