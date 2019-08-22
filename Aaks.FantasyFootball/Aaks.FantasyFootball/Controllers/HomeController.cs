@@ -117,6 +117,7 @@ namespace Aaks.FantasyFootball.Controllers
             "Joe Mixon",
             "Davante Adams", //Shane
             "Christian Mccaffery",
+            "Patrick Mahomes",
             "Tyreek Hill", //Jodee
             "Aaron Jones",
             "George Kittle",
@@ -131,7 +132,13 @@ namespace Aaks.FantasyFootball.Controllers
             "Michael Thomas", // Serge
             "Mark Ingram",
             "Julian Edelman",
-            "Julio Jones" //Tom
+            "Julio Jones", //Tom
+            "Derrick Henry", //Meg
+            "Evan Engram",
+            "Adam Thielen",
+            "James Conner", //Bob
+            "Odel Beckham",
+            "Nick Chubb"
         };
 
         private List<string> LastYearsKeepers = new List<string>
@@ -191,7 +198,7 @@ namespace Aaks.FantasyFootball.Controllers
                 var sorted = Get2018DraftPrice(players).OrderByDescending(p => p.FantasyPoints).ToList();
 
                 sorted = SetIs2018Keeper(sorted);
-                sorted = SetIsKeeper(sorted);
+                sorted = SetDrafFlags(sorted);
 
                 return sorted;
             }
@@ -205,12 +212,22 @@ namespace Aaks.FantasyFootball.Controllers
                 {
                     p.IsLastYearKeeper = true;
                 }
+
+                if(PlayersToTarget.Contains(RemoveNonLetters(p.Name)))
+                {
+                    p.IsTarget = true;
+                }
+
+                if(PlayersToAvoid.Contains(RemoveNonLetters(p.Name)))
+                {
+                    p.IsAvoid = true;
+                }
             }
 
             return players;
         }
 
-        private List<Player> SetIsKeeper(List<Player> players)
+        private List<Player> SetDrafFlags(List<Player> players)
         {
             foreach (var p in players)
             {

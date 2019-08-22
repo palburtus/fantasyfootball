@@ -148,5 +148,7 @@ namespace Aaks.FantasyFootball.Models
         public bool IsLastYearKeeper { get; set; }
         public bool IsKeeper { get; set; }
 
+        public bool IsTarget { get; set; }
+        public bool IsAvoid { get; set; }
     }
 }
