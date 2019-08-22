@@ -197,7 +197,6 @@ namespace Aaks.FantasyFootball.Controllers
 
                 var sorted = Get2018DraftPrice(players).OrderByDescending(p => p.FantasyPoints).ToList();
 
-                sorted = SetIs2018Keeper(sorted);
                 sorted = SetDrafFlags(sorted);
 
                 return sorted;
@@ -234,16 +233,21 @@ namespace Aaks.FantasyFootball.Controllers
             }
         }
 
-        private List<Player> SetIs2018Keeper(List<Player> players)
+        private List<Player> SetDrafFlags(List<Player> players)
         {
-            foreach(var p in players)
+            foreach (var p in players)
             {
-                if(LastYearsKeepers.Contains(RemoveNonLetters(p.Name)))
+                if (ThisYearsKeepers.Contains(RemoveNonLetters(p.Name)))
+                {
+                    p.IsKeeper = true;
+                }
+
+                if (LastYearsKeepers.Contains(RemoveNonLetters(p.Name)))
                 {
                     p.IsLastYearKeeper = true;
                 }
 
-                foreach(var key in PlayersToTarget.Keys)
+                foreach (var key in PlayersToTarget.Keys)
                 {
                     if (p.Name.Contains(key))
                     {
@@ -259,20 +263,6 @@ namespace Aaks.FantasyFootball.Controllers
                         p.IsAvoid = false;
                         p.Note = PlayersToAvoid[key];
                     }
-                }
-
-            }
-
-            return players;
-        }
-
-        private List<Player> SetDrafFlags(List<Player> players)
-        {
-            foreach (var p in players)
-            {
-                if (ThisYearsKeepers.Contains(RemoveNonLetters(p.Name)))
-                {
-                    p.IsKeeper = true;
                 }
             }
 
