@@ -18,9 +18,15 @@
         <li class="nav-item">
             <a class="nav-link" id="te-tab" data-toggle="tab" href="#te" role="tab" aria-controls="te" aria-selected="true">TE</a>
         </li>
+        <li class="nav-item">
+            <a class="nav-link" id="target-tab" data-toggle="tab" href="#target" role="tab" aria-controls="target">Targets</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" id="rookies-tab" data-toggle="tab" href="#target" role="tab" aria-controls="rookies">Rookies</a>
+        </li>
     </ul>
 
-    <div class="tab-content" id="tabs-by-positions">
+    <div class="tab-content" id="all-tab">
         <div class="tab-pane fade show active" id="all" role="tabpanel" aria-labelledby="all-tab">
             <table class="table">
 
@@ -51,7 +57,7 @@
                             {
                                 <td>@player.LastYearDraftValue</td>
                             }
-                            
+
                             <td>@player.Note</td>
 
                         </tr>
@@ -199,7 +205,7 @@
                     <th>Position</th>
                     <th>Fantasy Poiints</th>
                     <th>2018 Auction Value</th>
-                    <hh>Note</hh>
+                    <th>Note</th>
                 </tr>
 
                 @foreach (var player in ViewBag.RunningBacks)
@@ -274,7 +280,7 @@
         </div>
 
         <div class="tab-pane fade" id="qb" role="tabpanel" aria-labelledby="qb-tab">
-            
+
             <table class="table">
 
                 <tr>
@@ -283,7 +289,7 @@
                     <th>Position</th>
                     <th>Fantasy Poiints</th>
                     <th>2018 Auction Value</th>
-                    <hh>Note</hh>
+                    <th>Note</th>
                 </tr>
 
                 @foreach (var player in ViewBag.QuarterBacks)
@@ -355,7 +361,7 @@
 
 
             </table>
-            
+
         </div>
         <div class="tab-pane fade" id="te" role="tabpanel" aria-labelledby="te-tab">
             <table class="table">
@@ -440,9 +446,75 @@
             </table>
         </div>
 
+        
+
+
+
+        <div class="tab-pane fade" id="target" role="tabpanel" aria-labelledby="target">
+            <table class="table">
+
+                <tr>
+                    <th>Name</th>
+                    <th>Team</th>
+                    <th>Position</th>
+                    <th>Fantasy Poiints</th>
+                    <th>2018 Auction Value</th>
+                    <th>Note</th>
+
+                </tr>
+
+                @foreach (var player in ViewBag.TargetedPlayers)
+                {
+                    if (player.IsKeeper)
+                    {
+                        <tr class="table-dark">
+                            <td>@player.Name</td>
+                            <td>@player.Team</td>
+                            <td>@player.Position</td>
+                            <td>@player.FantasyPoints</td>
+                            @if (player.IsLastYearKeeper)
+                            {
+                                <td>@player.LastYearDraftValue (K)</td>
+                            }
+                            else
+                            {
+                                <td>@player.LastYearDraftValue</td>
+                            }
+
+                            <td>@player.Note</td>
+
+                        </tr>
+                    }
+                    
+                    else
+                    {
+                        <tr>
+                            <td>@player.Name</td>
+                            <td>@player.Team</td>
+                            <td>@player.Position</td>
+                            <td>@player.FantasyPoints</td>
+                            @if (player.IsLastYearKeeper)
+                            {
+                                <td>@player.LastYearDraftValue (K)</td>
+                            }
+                            else
+                            {
+                                <td>@player.LastYearDraftValue</td>
+                            }
+
+                            <td>@player.Note</td>
+
+                        </tr>
+
+                    }
+
+                }
+
+            </table>
+        </div>
+
+
     </div>
 
-    
 
 
-    

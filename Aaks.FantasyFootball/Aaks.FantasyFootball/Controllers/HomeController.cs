@@ -183,6 +183,7 @@ namespace Aaks.FantasyFootball.Controllers
             ViewBag.RunningBacks = players.Where(p => p.Position.ToLower() == "rb");
             ViewBag.QuarterBacks = players.Where(p => p.Position.ToLower() == "qb");
             ViewBag.TightEnds = players.Where(p => p.Position.ToLower() == "te");
+            ViewBag.TargetedPlayers = players.Where(p => p.IsTarget == true);
             return View();
         }
 
