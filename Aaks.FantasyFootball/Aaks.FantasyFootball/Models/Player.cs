@@ -152,5 +152,7 @@ namespace Aaks.FantasyFootball.Models
         public bool IsAvoid { get; set; }
 
         public string Note { get; set; }
+
+        public bool IsRookie { get; set; }
     }
 }

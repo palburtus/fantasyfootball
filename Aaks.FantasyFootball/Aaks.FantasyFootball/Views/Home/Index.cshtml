@@ -22,7 +22,7 @@
             <a class="nav-link" id="target-tab" data-toggle="tab" href="#target" role="tab" aria-controls="target">Targets</a>
         </li>
         <li class="nav-item">
-            <a class="nav-link" id="rookies-tab" data-toggle="tab" href="#target" role="tab" aria-controls="rookies">Rookies</a>
+            <a class="nav-link" id="rookies-tab" data-toggle="tab" href="#rookies" role="tab" aria-controls="rookies">Rookies</a>
         </li>
     </ul>
 
@@ -446,7 +446,7 @@
             </table>
         </div>
 
-        
+
 
 
 
@@ -485,7 +485,7 @@
 
                         </tr>
                     }
-                    
+
                     else
                     {
                         <tr>
@@ -509,6 +509,66 @@
                     }
 
                 }
+
+            </table>
+        </div>
+
+        <div class="tab-pane fade" id="rookies" role="tabpanel" aria-labelledby="rookies-tab">
+            <table class="table">
+
+                <tr>
+                    <th>Name</th>
+                    <th>Team</th>
+                    <th>Position</th>
+                    <th>Note</th>
+                </tr>
+
+                @foreach (var player in ViewBag.Rookies)
+                {
+                    if (player.IsKeeper)
+                    {
+                        <tr class="table-dark">
+                            <td>@player.Name</td>
+                            <td>@player.Team</td>
+                            <td>@player.Position</td>
+                            <td>@player.Note</td>
+
+                        </tr>
+                    }
+                    else if (player.IsTarget)
+                    {
+                        <tr class="table-success">
+                            <td>@player.Name</td>
+                            <td>@player.Team</td>
+                            <td>@player.Position</td>
+                            <td>@player.Note</td>
+
+                        </tr>
+                    }
+                    else if (player.IsAvoid)
+                    {
+                        <tr class="table-danger">
+                            <td>@player.Name</td>
+                            <td>@player.Team</td>
+                            <td>@player.Position</td>
+                            <td>@player.Note</td>
+
+                        </tr>
+                    }
+                    else
+                    {
+                        <tr>
+                            <td>@player.Name</td>
+                            <td>@player.Team</td>
+                            <td>@player.Position</td>
+                            <td>@player.Note</td>
+
+                        </tr>
+
+                    }
+
+                }
+
 
             </table>
         </div>

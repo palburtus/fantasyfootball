@@ -144,6 +144,7 @@
     <Content Include="Json\2018DraftResults.html">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="Json\2019_rookies.txt" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="Json\playerdata2016.json" />

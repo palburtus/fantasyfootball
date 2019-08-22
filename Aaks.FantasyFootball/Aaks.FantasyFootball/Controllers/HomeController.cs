@@ -184,6 +184,7 @@ namespace Aaks.FantasyFootball.Controllers
             ViewBag.QuarterBacks = players.Where(p => p.Position.ToLower() == "qb");
             ViewBag.TightEnds = players.Where(p => p.Position.ToLower() == "te");
             ViewBag.TargetedPlayers = players.Where(p => p.IsTarget == true);
+            ViewBag.Rookies = GetRookies();
             return View();
         }
 
@@ -198,6 +199,36 @@ namespace Aaks.FantasyFootball.Controllers
 
                 sorted = SetIs2018Keeper(sorted);
                 sorted = SetDrafFlags(sorted);
+
+                return sorted;
+            }
+        }
+
+        private List<Player> GetRookies()
+        {
+            using (StreamReader r = new StreamReader(Server.MapPath(@"\Json\2019_rookies.txt")))
+            {
+                var players = new List<Player>();
+
+                string line;
+                
+                while((line = r.ReadLine()) != null)
+                {
+                    string[] values = line.Split(',');
+
+                    Player player = new Player();
+                    player.Name = values[0];
+                    player.Team = values[1];
+                    player.Position = values[2];
+                    player.IsRookie = true;
+
+                    players.Add(player);
+                }
+                
+
+                
+
+                var sorted = SetDrafFlags(players);
 
                 return sorted;
             }
