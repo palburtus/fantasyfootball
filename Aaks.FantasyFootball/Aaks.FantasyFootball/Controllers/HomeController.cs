@@ -260,7 +260,7 @@ namespace Aaks.FantasyFootball.Controllers
                 {
                     if (p.Name.Contains(key))
                     {
-                        p.IsAvoid = false;
+                        p.IsAvoid = true;
                         p.Note = PlayersToAvoid[key];
                     }
                 }
